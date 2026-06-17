@@ -58,14 +58,14 @@
       background: rgba(255,255,255,0.7); backdrop-filter: saturate(180%) blur(16px);
       border-bottom: 1px solid transparent; transition: border-color var(--ease), background var(--ease); }
     .nav.scrolled { border-bottom-color: var(--line-soft); background: rgba(255,255,255,0.85); }
-    .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; gap: 16px; }
-    .brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 17px; letter-spacing: -0.03em; justify-self: start; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 17px; letter-spacing: -0.03em; }
     .brand .dot { width: 20px; height: 20px; border-radius: 6px;
       background: conic-gradient(from 210deg, var(--i4), var(--i1), var(--i2), var(--i3), var(--i4)); }
-    .nav-center { display: flex; align-items: center; gap: 4px; justify-self: center; }
-    .nav-center a { font-size: 14.5px; color: var(--muted); padding: 8px 14px; border-radius: 9px; transition: color var(--ease), background var(--ease); }
-    .nav-center a:hover { color: var(--ink); background: var(--bg-soft); }
-    .nav-right { display: flex; align-items: center; gap: 10px; justify-self: end; }
+    .nav-right { display: flex; align-items: center; gap: 6px; }
+    .nav-link { font-size: 14.5px; color: var(--muted); padding: 8px 14px; border-radius: 9px; transition: color var(--ease), background var(--ease); }
+    .nav-link:hover { color: var(--ink); background: var(--bg-soft); }
+    .nav-right .btn-dark { margin-left: 6px; }
 
     /* ---------- Hero ---------- */
     .hero { padding: 80px 0 52px; }
@@ -178,7 +178,7 @@
     @media (max-width: 560px) {
       .section { padding: 60px 0; }
       .hero { padding: 52px 0 32px; }
-      .nav-center { display: none; }
+      .nav-link { display: none; }
       .foot-top { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -201,14 +201,11 @@
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="/"><span class="dot"></span>Simple Genius</a>
-      <nav class="nav-center">
-        <a href="#apps">Apps</a>
-        <a href="#support">Support</a>
-      </nav>
-      <div class="nav-right">
-        <a class="btn btn-ghost soon" aria-disabled="true" title="Coming soon">Shopify App Store <span class="arrow">&nearr;</span></a>
+      <nav class="nav-right">
+        <a class="nav-link" href="#apps">Apps</a>
+        <a class="nav-link" href="#support">Support</a>
         <a class="btn btn-dark" href="mailto:support@simplegenius.co.uk">Contact</a>
-      </div>
+      </nav>
     </div>
   </header>
 
