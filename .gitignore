@@ -1,0 +1,3 @@
+# redundant source copy of the Lottie (we deploy brain.txt)
+brain.json
+.DS_Store

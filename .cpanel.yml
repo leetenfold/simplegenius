@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/simplegeniusco/public_html/
+    - /bin/cp -f index.html $DEPLOYPATH
+    - /bin/cp -f privacy-policy.html $DEPLOYPATH
+    - /bin/cp -f terms-of-service.html $DEPLOYPATH
+    - /bin/cp -f brain.txt $DEPLOYPATH
