@@ -93,14 +93,24 @@
     .hero .cta { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
 
     .visual { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 1 / 1;
-      background: linear-gradient(165deg, #fbfbfd 0%, #f0eff5 100%);
-      border: 1px solid var(--line-soft); box-shadow: 0 30px 70px -45px rgba(30,27,75,0.5); }
-    .orb { position: absolute; border-radius: 50%; filter: blur(38px); }
-    .orb.a { width: 50%; height: 50%; top: -10%; left: -8%; background: radial-gradient(circle at 50% 50%, var(--i1), transparent 66%); opacity: .6; }
-    .orb.b { width: 46%; height: 46%; bottom: -8%; right: -6%; background: radial-gradient(circle at 50% 50%, var(--i4), transparent 66%); opacity: .6; }
-    .orb.c { width: 40%; height: 40%; bottom: 4%; left: 28%; background: radial-gradient(circle at 50% 50%, var(--i2), transparent 70%); opacity: .42; }
-    .visual .brain { position: absolute; z-index: 3; inset: 0; display: flex; align-items: center; justify-content: center; }
-    .visual .brain > div { width: 74%; aspect-ratio: 1/1; }
+      display: flex; align-items: center; justify-content: center; background: #0c0c14;
+      border: 1px solid var(--line-soft); box-shadow: 0 30px 70px -45px rgba(30,27,75,0.55); }
+    /* animated rainbow field (a living version of the logo) */
+    .visual .rainbow { position: absolute; inset: -35%;
+      background: conic-gradient(from 0deg, #2563eb, #06b6d4, #22c55e, #facc15, #f97316, #ef4444, #ec4899, #8b5cf6, #2563eb);
+      filter: blur(26px) saturate(1.15); animation: spin 18s linear infinite; }
+    .visual .glow { position: absolute; left: 50%; top: 50%; width: 66%; aspect-ratio: 1/1; transform: translate(-50%,-54%);
+      border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 60%);
+      filter: blur(8px); animation: breathe 4.4s ease-in-out infinite; }
+    .visual .grain { position: absolute; inset: 0; opacity: 0.15; mix-blend-mode: overlay; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 150px 150px; }
+    .visual .bulb { position: relative; z-index: 2; width: 46%; height: auto;
+      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.22)); animation: bob 4.4s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes breathe { 0%,100% { opacity: .3; } 50% { opacity: .72; } }
+    @keyframes bob { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-2.5%) scale(1.02); } }
+    @media (prefers-reduced-motion: reduce) { .visual .rainbow, .visual .glow, .visual .bulb { animation: none; } }
 
     /* ---------- Section scaffolding ---------- */
     .section { padding: 84px 0; }
@@ -234,8 +244,14 @@
         </div>
       </div>
       <div class="visual">
-        <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
-        <div class="brain"><div id="brainLottie" role="img" aria-label="Animated brain inside a lightbulb"></div></div>
+        <div class="rainbow"></div>
+        <div class="grain"></div>
+        <div class="glow"></div>
+        <svg class="bulb" viewBox="0 0 120 134" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simple Genius logo">
+          <circle cx="60" cy="48" r="42" fill="#fff"/>
+          <path d="M44 82 L76 82 L72 110 L48 110 Z" fill="#fff"/>
+          <path d="M50 110 L70 110 L66 126 L54 126 Z" fill="#fff"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -399,12 +415,7 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <script>
-    lottie.loadAnimation({
-      container: document.getElementById('brainLottie'),
-      renderer: 'svg', loop: true, autoplay: true, path: '/brain.txt'
-    });
     var nav = document.getElementById('nav');
     window.addEventListener('scroll', function () {
       nav.classList.toggle('scrolled', window.scrollY > 8);
