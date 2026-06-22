@@ -93,24 +93,17 @@
     .hero .cta { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
 
     .visual { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 1 / 1;
-      display: flex; align-items: center; justify-content: center; background: #0c0c14;
       border: 1px solid var(--line-soft); box-shadow: 0 30px 70px -45px rgba(30,27,75,0.55); }
-    /* animated rainbow field (a living version of the logo) */
-    .visual .rainbow { position: absolute; inset: -35%;
-      background: conic-gradient(from 0deg, #2563eb, #06b6d4, #22c55e, #facc15, #f97316, #ef4444, #ec4899, #8b5cf6, #2563eb);
-      filter: blur(26px) saturate(1.15); animation: spin 18s linear infinite; }
-    .visual .glow { position: absolute; left: 50%; top: 50%; width: 66%; aspect-ratio: 1/1; transform: translate(-50%,-54%);
-      border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 60%);
-      filter: blur(8px); animation: breathe 4.4s ease-in-out infinite; }
-    .visual .grain { position: absolute; inset: 0; opacity: 0.15; mix-blend-mode: overlay; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 150px 150px; }
-    .visual .bulb { position: relative; z-index: 2; width: 46%; height: auto;
-      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.22)); animation: bob 4.4s ease-in-out infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes breathe { 0%,100% { opacity: .3; } 50% { opacity: .72; } }
-    @keyframes bob { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-2.5%) scale(1.02); } }
-    @media (prefers-reduced-motion: reduce) { .visual .rainbow, .visual .glow, .visual .bulb { animation: none; } }
+    .visual .logo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      animation: breath 7s ease-in-out infinite; }
+    /* soft halo that pulses over the bulb so the logo "lights up" */
+    .visual .bulb-glow { position: absolute; left: 50%; top: 31%; width: 52%; aspect-ratio: 1/1;
+      transform: translate(-50%,-50%); border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 62%);
+      mix-blend-mode: screen; filter: blur(10px); animation: glow 4s ease-in-out infinite; }
+    @keyframes glow { 0%,100% { opacity: .22; } 50% { opacity: .8; } }
+    @keyframes breath { 0%,100% { transform: scale(1); } 50% { transform: scale(1.018); } }
+    @media (prefers-reduced-motion: reduce) { .visual .logo-img, .visual .bulb-glow { animation: none; } }
 
     /* ---------- Section scaffolding ---------- */
     .section { padding: 84px 0; }
@@ -244,14 +237,8 @@
         </div>
       </div>
       <div class="visual">
-        <div class="rainbow"></div>
-        <div class="grain"></div>
-        <div class="glow"></div>
-        <svg class="bulb" viewBox="0 0 120 134" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simple Genius logo">
-          <circle cx="60" cy="48" r="42" fill="#fff"/>
-          <path d="M44 82 L76 82 L72 110 L48 110 Z" fill="#fff"/>
-          <path d="M50 110 L70 110 L66 126 L54 126 Z" fill="#fff"/>
-        </svg>
+        <img class="logo-img" src="/logo-hero.jpg" alt="Simple Genius logo">
+        <div class="bulb-glow"></div>
       </div>
     </div>
   </section>
