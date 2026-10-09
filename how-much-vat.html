@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much VAT? Free UK print VAT checker | Simple Genius</title>
+  <meta name="description" content="Is your print 0% or 20% VAT? How Much VAT? is a free UK tool that checks any print item and shows the HMRC reason. Built by Tenfold Ltd, trading as Simple Genius.">
+  <link rel="canonical" href="https://simplegenius.co.uk/how-much-vat.html">
+  <link rel="stylesheet" href="https://use.typekit.net/wbo0ogn.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simplegenius.co.uk/how-much-vat.html">
+  <meta property="og:title" content="How Much VAT? Free UK print VAT checker | Simple Genius">
+  <meta property="og:description" content="Is your print 0% or 20% VAT? A free UK tool that checks any print item and shows the HMRC reason.">
+  <meta property="og:image" content="https://simplegenius.co.uk/logo-social.jpg">
+  <meta name="twitter:card" content="summary">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #e8e8ea;
+      --bg-soft:   #dcdce0;
+      --bg-tint:   #f4f4f6;
+      --ink:       #0a0a0b;
+      --muted:     #65656b;
+      --faint:     #9a9aa2;
+      --line:      rgba(10,10,11,0.10);
+      --line-soft: rgba(10,10,11,0.06);
+      --i1:        #4f46e5;
+      --i2:        #7c3aed;
+      --i3:        #2563eb;
+      --i4:        #06b6d4;
+      --ease:      150ms cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: "neue-haas-grotesk-text", "tt-commons-pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--ink);
+      font-size: 16px; line-height: 1.5; letter-spacing: -0.011em;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, .brand { font-family: "neue-haas-grotesk-display", "neue-haas-grotesk-text", "tt-commons-pro", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 14.5px; font-weight: 500; letter-spacing: -0.01em;
+      border-radius: 999px; padding: 10px 18px; cursor: pointer;
+      border: 1px solid transparent; transition: background var(--ease), transform var(--ease), border-color var(--ease), color var(--ease);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-dark:hover { background: #2a2a2e; }
+    .btn-ghost { border-color: var(--line); color: var(--ink); background: #fff; }
+    .btn-ghost:hover { background: var(--bg-soft); }
+    .btn-lg { padding: 13px 24px; font-size: 15.5px; }
+    .arrow { transition: transform var(--ease); }
+    .btn:hover .arrow { transform: translate(1px,-1px); }
+
+    /* ---------- Nav ---------- */
+    .nav { position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.7); backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid transparent; transition: border-color var(--ease), background var(--ease); }
+    .nav.scrolled { border-bottom-color: var(--line-soft); background: rgba(255,255,255,0.85); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 17px; letter-spacing: -0.03em; }
+    .brand .dot { width: 24px; height: 24px; border-radius: 7px; flex: none;
+      background: url('/favicon-96.png') center/cover no-repeat; box-shadow: 0 1px 3px rgba(10,10,11,0.18); }
+    .nav-right { display: flex; align-items: center; gap: 6px; }
+    .nav-link { font-size: 14.5px; color: var(--muted); padding: 8px 14px; border-radius: 9px; transition: color var(--ease), background var(--ease); }
+    .nav-link:hover { color: var(--ink); background: var(--bg-soft); }
+    .nav-right .btn-dark { margin-left: 6px; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 80px 0 52px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 60px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500;
+      color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px 6px 11px; margin-bottom: 26px; }
+    .eyebrow .ping { width: 7px; height: 7px; border-radius: 50%; background: var(--i1); box-shadow: 0 0 0 3px rgba(79,70,229,0.16); }
+    .hero h1 { font-size: clamp(40px, 6vw, 66px); line-height: 1.02; font-weight: 600; letter-spacing: -0.045em; margin-bottom: 24px; }
+    .hero p { color: var(--muted); font-size: 17px; line-height: 1.62; max-width: 32em; margin-bottom: 15px; }
+    .hero .cta { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+
+    /* rate illustration: two plain labels, no example results */
+    .visual { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 1 / 1;
+      border: 1px solid var(--line-soft); box-shadow: 0 30px 70px -45px rgba(30,27,75,0.55);
+      background: linear-gradient(140deg, var(--i1), var(--i4));
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 32px; }
+    .visual .q { color: rgba(255,255,255,0.85); font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
+    .visual .rates { display: flex; gap: 16px; align-items: stretch; }
+    .visual .rate { background: rgba(255,255,255,0.96); border-radius: 20px; padding: 26px 34px;
+      font-family: "neue-haas-grotesk-display", "neue-haas-grotesk-text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: clamp(44px, 7vw, 76px); font-weight: 600; letter-spacing: -0.05em; line-height: 1; color: var(--ink);
+      box-shadow: 0 18px 40px -22px rgba(10,10,40,0.6); }
+    .visual .rate small { display: block; font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-top: 10px; }
+
+    /* ---------- Sections ---------- */
+    .section { padding: 84px 0; }
+    .section-head { max-width: 660px; margin-bottom: 44px; }
+    .kicker { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--i1); margin-bottom: 14px; }
+    .section-head h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.06; font-weight: 600; letter-spacing: -0.04em; margin-bottom: 14px; }
+    .section-head p { color: var(--muted); font-size: 16.5px; line-height: 1.6; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cell { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 34px; }
+    .step-num { display: inline-flex; width: 34px; height: 34px; border-radius: 10px; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 600; color: #fff; background: linear-gradient(140deg, var(--i1), var(--i4)); margin-bottom: 18px; }
+    .cell h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .cell p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+
+    .band { background: var(--bg-soft); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+    .band .inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .band h2 { font-size: clamp(26px, 3.2vw, 36px); line-height: 1.08; font-weight: 600; letter-spacing: -0.04em; margin-bottom: 8px; }
+    .band p { color: var(--muted); font-size: 16px; max-width: 34em; }
+
+    /* ---------- Footer ---------- */
+    .footer { padding: 64px 0 40px; }
+    .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid var(--line-soft); }
+    .foot-brand p { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin-top: 16px; max-width: 24em; }
+    .foot-col h4 { font-size: 13px; font-weight: 600; color: var(--faint); letter-spacing: 0.02em; margin-bottom: 16px; }
+    .foot-col a { display: block; font-size: 14.5px; color: var(--muted); padding: 5px 0; transition: color var(--ease); }
+    .foot-col a:hover { color: var(--ink); }
+    .foot-bottom { padding-top: 26px; font-size: 13px; color: var(--faint); line-height: 1.6; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 920px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .visual { max-width: 460px; margin: 0 auto; width: 100%; }
+      .steps { grid-template-columns: 1fr; }
+      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .foot-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .section { padding: 60px 0; }
+      .hero { padding: 52px 0 32px; }
+      .nav-link { display: none; }
+      .foot-top { grid-template-columns: 1fr 1fr; }
+      .visual .rate { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/"><span class="dot"></span>Simple Genius</a>
+      <nav class="nav-right">
+        <a class="nav-link" href="/#apps">Apps</a>
+        <a class="nav-link" href="/#support">Support</a>
+        <a class="btn btn-dark" href="mailto:support@simplegenius.co.uk">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="ping"></span>Free tool</span>
+        <h1>Is your print 0% or 20% VAT?</h1>
+        <p><a href="https://howmuchvat.co.uk" rel="noopener"><strong>How Much VAT?</strong></a> is a free UK print VAT checker. Type any print item, such as orders of service, flyers, menus or banners, and it tells you whether HMRC guidance treats it as 0% or 20% VAT, with the reason and any conditions.</p>
+        <p>It is a small, single-purpose tool, built in the same spirit as our Shopify apps: one problem, solved properly.</p>
+        <div class="cta">
+          <a class="btn btn-dark btn-lg" href="https://howmuchvat.co.uk" rel="noopener">Open How Much VAT? <span class="arrow">&nearr;</span></a>
+          <a class="btn btn-ghost btn-lg" href="/">Back to Simple Genius</a>
+        </div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="q">Which one is your print?</div>
+        <div class="rates">
+          <div class="rate">0%</div>
+          <div class="rate">20%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">How it works</span>
+        <h2>Type the item. Get the rate and the reason.</h2>
+        <p>Aimed at anyone buying print for a business, so you know what VAT to expect before you order.</p>
+      </div>
+      <div class="steps">
+        <div class="cell">
+          <span class="step-num">1</span>
+          <h3>Type a print item</h3>
+          <p>Orders of service, flyers, menus, banners and other print products.</p>
+        </div>
+        <div class="cell">
+          <span class="step-num">2</span>
+          <h3>See the rate</h3>
+          <p>A clear answer straight away: 0% or 20% VAT.</p>
+        </div>
+        <div class="cell">
+          <span class="step-num">3</span>
+          <h3>Read the reason</h3>
+          <p>Each answer comes with the HMRC reason and any conditions that apply.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="band">
+    <div class="section">
+      <div class="wrap">
+        <div class="inner">
+          <div>
+            <h2>Check your next print order.</h2>
+            <p>How Much VAT? is free to use. It comes from Tenfold, a UK print company.</p>
+          </div>
+          <a class="btn btn-dark btn-lg" href="https://howmuchvat.co.uk" rel="noopener">Open How Much VAT? <span class="arrow">&nearr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <a class="brand" href="/"><span class="dot"></span>Simple Genius</a>
+          <p>Simple Genius builds focused Shopify apps. One problem, solved properly.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Apps &amp; tools</h4>
+          <a href="/#apps">Tax Inside</a>
+          <a href="/#apps">+Tax</a>
+          <a href="/how-much-vat.html">How Much VAT?</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/#support">Support</a>
+          <a href="mailto:support@simplegenius.co.uk">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        Simple Genius is a trading name of Tenfold Ltd, registered in England and Wales under company number 05231604.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function () {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
